@@ -20,9 +20,9 @@
 			</div>
 			<form id="giftCertificateForm" method="post" enctype="multipart/form-data">
 				<div class="form-section clearfix">
-					<label for="GiftTicketAmount">Choose a GiftTicket Amount</label>
+					<label for="giftTicketAmount">Choose a GiftTicket Amount</label>
 					<div class="form-field clearfix">
-						<?=$this->showArraySelect($GLOBALS['_amounts'], 'giftTicketAmount', null, 'None', false, '$', ' - Cost $', '|') ?>
+						<?=$this->showArraySelect($GLOBALS['_amounts'], 'giftTicketAmount', $this->giftTicketAmount, 'None', false, '$', ' - Cost $', '|') ?>
 						<div class="form-message" id="ticketAmountAndCostMsg">
 							You have selected a <span id="ticketAmoutMsg"></span> GiftTicket.
 							<br>
@@ -36,7 +36,7 @@
 				<div class="form-section clearfix">
 					<label for="giftTicketTheme">Choose a GiftTicket Theme for an Occasion</label>
 					<div class="form-field clearfix">
-						<?=$this->showArraySelect($GLOBALS['_themes'], 'giftTicketTheme', null, 'None', true, '', '', '') ?>
+						<?=$this->showArraySelect($GLOBALS['_themes'], 'giftTicketTheme', $this->giftTicketTheme, 'None', true, '', '', '') ?>
 						<div class="form-message" id="giftTicketThemeMsg">
 							You have selected &quot;<span id="giftTicketThemeNameMsg"></span>&quot; for your GiftTicket
 						</div>
@@ -48,13 +48,13 @@
 				<div class="form-section clearfix">
 					<label for="giftTicketMessage">Write a personalized message to your recipient</label>
 					<div class="form-field clearfix">
-						<textarea name="giftTicketMessage" id="giftTicketMessage"></textarea>
+						<textarea name="giftTicketMessage" id="giftTicketMessage"><?=$this->giftTicketMessage?></textarea>
 					</div>
 				</div>
 				<div class="form-section clearfix">
 					<label for="recipientEmail" id="lblRecipientEmail">Recipent's Email Address</label>
 					<div class="form-field clearfix">
-						<input type="text" name="recipientEmail" id="recipientEmail">
+						<input type="text" name="recipientEmail" id="recipientEmail" value="<?=$this->recipientEmail?>">
 					</div>
 				</div>
 				<div class="form-section clearfix">

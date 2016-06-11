@@ -1,4 +1,4 @@
-
+@import url(https://fonts.googleapis.com/css?family=Fredoka+One);
 /*clearfix def.*/
 /* float clearing for IE6 */
 * html .clearfix
@@ -68,7 +68,7 @@ label
 #giftTicketTheme
 {
 	width: 240px;
-	margin-right: 20px;
+	margin-right: 30px;
 }
 #giftTicketMessage
 {
@@ -83,9 +83,16 @@ label
 }
 .form-submits
 {
-	border: 1px red solid;
+	
 }
 .form-submit-image
 {
 	margin: 0 auto;
+}
+#ticketAmountAndCostMsg,
+#ticketAmountAndCostNoSelectionMsg,
+#giftTicketThemeMsg,
+#giftTicketThemeNoSelectionMsg
+{
+	display: none;
 }

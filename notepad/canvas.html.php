@@ -43,8 +43,8 @@
 	</head>
 	<body>
 		<canvas id="giftCertificateCanvas"></canvas>
-		<img src="GiftCertificate.jpg" id="giftCertificateImg" enctype="multipart/form-data">
-		<form id="giftCertificateForm" method="post">
+		<img src="GiftCertificate.jpg" id="giftCertificateImg">
+		<form id="giftCertificateForm" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="blobData">
 			<input type="submit" value="Submit">
 		</form>
