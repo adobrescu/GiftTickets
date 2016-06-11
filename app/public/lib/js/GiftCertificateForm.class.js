@@ -4,6 +4,8 @@ function GiftCertificateForm(formId, themeImagesUrl)
 	
 	
 	this.form=document.getElementById(formId);
+	this.form.onsubmit=new Function("evt", "GiftCertificateForm.prototype.___instance.onSubmit(evt)");
+	
 	this.canvas=this.form.querySelectorAll("canvas")[0];
 	
 	
@@ -35,6 +37,9 @@ function GiftCertificateForm(formId, themeImagesUrl)
 	}
 	
 	this.previousMessage="";
+	
+	this.onAmountChange();
+	this.onThemeChange();
 }
 
 with(GiftCertificateForm)
@@ -42,19 +47,65 @@ with(GiftCertificateForm)
 	prototype.___textEvents=["keyup", "paste", "drop"];
 	prototype.___instance=null;//kind of singletone, "static" __instance keeps the uniques GiftCertificateForm instance
 	
+	prototype.getAmountAndCost=GiftCertificateForm_getAmountAndCost;
+	
 	prototype.onAmountChange=GiftCertificateForm_onAmountChange;
 	prototype.onThemeChange=GiftCertificateForm_onThemeChange;
 	prototype.onMessageChange=GiftCertificateForm_onMessageChange;
 	
 	//prototype.onLoadThemeImage=GiftCertificateForm_onLoadThemeImage;
 	prototype.drawGiftCertificate=GiftCertificateForm_drawGiftCertificate;
+	
+	prototype.onSubmit=GiftCertificateForm_onSubmit;
+}
+function GiftCertificateForm_getAmountAndCost()
+{
+	var amt;
+	if(this.selectAmount.selectedIndex==0)
+	{
+		return null;
+	}
+	amt=this.selectAmount.value.split("|");
+	
+	return {"amount": amt[0], "cost": amt[1]};
+
 }
 function GiftCertificateForm_onAmountChange(evt)
 {
+	var amt=this.getAmountAndCost();
+	
+	if(!amt)
+	{//no amount selected, hide the amt/cost message
+		this.form.ownerDocument.getElementById("ticketAmountAndCostMsg").style.display="none";
+		//show no selection message
+		this.form.ownerDocument.getElementById("ticketAmountAndCostNoSelectionMsg").style.display="block";
+		
+	}
+	else
+	{
+		//hide no sel. msg
+		this.form.ownerDocument.getElementById("ticketAmountAndCostNoSelectionMsg").style.display="none";
+		//update amount/cost message
+		this.form.ownerDocument.getElementById("ticketAmountAndCostMsg").style.display="block";
+		this.form.ownerDocument.getElementById("ticketAmoutMsg").innerHTML="$"+amt.amount;
+		this.form.ownerDocument.getElementById("ticketCostMsg").innerHTML="$"+amt.cost;
+	}
 	this.drawGiftCertificate();
 }
 function GiftCertificateForm_onThemeChange(evt)
 {
+	if(this.selectTheme.selectedIndex<1)
+	{
+		this.form.ownerDocument.getElementById("giftTicketThemeMsg").style.display="none";
+		this.form.ownerDocument.getElementById("giftTicketThemeNoSelectionMsg").style.display="block";	
+	}
+	else
+	{
+		this.form.ownerDocument.getElementById("giftTicketThemeNoSelectionMsg").style.display="none";	
+		this.form.ownerDocument.getElementById("giftTicketThemeMsg").style.display="block";
+		this.form.ownerDocument.getElementById("giftTicketThemeNameMsg").innerHTML=this.selectTheme.options[this.selectTheme.selectedIndex].text;
+		
+	}
 	this.drawGiftCertificate();
 }
 function GiftCertificateForm_onMessageChange(evt)
@@ -70,7 +121,7 @@ function GiftCertificateForm_onLoadThemeImage(evt)
 */
 function GiftCertificateForm_drawGiftCertificate()
 {
-	if(this.selectTheme.selectedIndex<1)
+	if(this.selectTheme.selectedIndex<1 || this.selectAmount.selectedIndex<1)
 	{
 		this.canvas.style.display="none";
 		return;
@@ -89,9 +140,9 @@ function GiftCertificateForm_drawGiftCertificate()
 	context.font="36px Fredoka One, serif";
 	context.textAlign="center";
 	
-	var amt=this.selectAmount.value.split("|")[0];
+	var amt=this.getAmountAndCost();
 	
-	amt=amt.split(".")[0];
+	amt=amt.amount.split(".")[0];
 	
 	context.fillText("$"+amt, this.canvas.width*0.16, this.canvas.height*0.195);
 	
@@ -101,4 +152,9 @@ function GiftCertificateForm_drawGiftCertificate()
 	
 	
 	//alert(this.themeImages[this.selectTheme.selectedIndex-1].src);
+}
+function GiftCertificateForm_onSubmit()
+{
+	
+	this.form.element.imgBlob.value=this.canvas.toDataURL("image/jpeg");
 }
