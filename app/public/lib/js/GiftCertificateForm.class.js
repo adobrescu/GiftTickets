@@ -1,0 +1,7 @@
+function GiftCertificateForm()
+{
+}
+
+with(GiftCertificateForm)
+{
+}
