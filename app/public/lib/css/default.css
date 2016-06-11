@@ -96,3 +96,8 @@ label
 {
 	display: none;
 }
+
+.form-error
+{
+	color: red;
+}

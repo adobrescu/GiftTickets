@@ -9,8 +9,10 @@
 		'25.00' => '24.00'
 	);
 	$_themes=array(
-		'Birthday',
-		'Celebration'
+		'Birthday' => 'Birthday',
+		'Celebration' => 'Celebration'
 	);
+	
+	$_db=new Mysqli('localhost', 'root', '', 'gift_certificates');
 
 	

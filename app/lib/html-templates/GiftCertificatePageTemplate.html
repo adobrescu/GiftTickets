@@ -18,6 +18,16 @@
 			<div class="merchant-info">
 				Merchant Info
 			</div>
+<?php
+	if($this->errorMessage)
+	{
+?>
+			<div class="form-error">
+				<?=$this->errorMessage?>
+			</div>
+<?php
+	}
+?>
 			<form id="giftCertificateForm" method="post" enctype="multipart/form-data">
 				<div class="form-section clearfix">
 					<label for="giftTicketAmount">Choose a GiftTicket Amount</label>

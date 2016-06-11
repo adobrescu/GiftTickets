@@ -7,5 +7,6 @@ create table gift_certificates
 	cost decimal (6,2) null, 
 	theme varchar(50) not null,
 	message varchar(250), 
-	recipeint_email varchar(50)
+	recipeint_email varchar(50),
+	img_blob blob not null
 );

@@ -156,5 +156,5 @@ function GiftCertificateForm_drawGiftCertificate()
 function GiftCertificateForm_onSubmit()
 {
 	
-	this.form.element.imgBlob.value=this.canvas.toDataURL("image/jpeg");
+	this.form.elements["imgBlob"].value=this.canvas.toDataURL("image/jpeg");
 }
