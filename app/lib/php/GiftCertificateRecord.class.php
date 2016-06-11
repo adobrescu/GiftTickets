@@ -38,7 +38,7 @@ class GiftCertificateRecord extends Record
 				\''.$this->giftTicketTheme.'\',
 				\''.$this->giftTicketMessage.'\',
 				\''.$this->recipientEmail.'\',
-				\''.$this->imgBlob.'\'
+				\''.$this->db->real_escape_string($this->imgBlob).'\'
 			)';
 		
 		if($this->db->query($query)===false)

@@ -14,7 +14,8 @@ $view=new GiftCertificateView(HTML_TEMPLATE_DIR.'/GiftCertificatePageTemplate.ht
 if(isset($_POST['cmd_x']))
 {
 	global $_db;
-	$_POST['imgBlob']=(substr($_POST['imgBlob'], 23));
+	
+	$_POST['imgBlob']=base64_decode(substr($_POST['imgBlob'], 23));
 	
 	$arr=explode('|', $_POST['giftTicketAmount']);
 	$_POST['giftTicketAmount']=$arr[0];
@@ -61,7 +62,7 @@ if(isset($_POST['cmd_x']))
 	}
 	catch(Exception $err)
 	{
-		$view->errorMessage='An error has occured';
+		$view->errorMessage='A database error has occured ';
 	}
 }
 
