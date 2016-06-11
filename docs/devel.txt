@@ -1,0 +1,5 @@
+1. Local GIT repo
+2. Build empty app structure (directories, class definition files, tmp dir, uploads dir etc)
+3. Server side: View
+3. Build client side(?!)
+4. Server side (save to db. etc).

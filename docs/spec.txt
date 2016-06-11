@@ -1,0 +1,24 @@
+make html that will take user input and show gift certificate in real time preview so as user enters and selects drop down gift certificate changes in real time.
+
+once all fields are entered and user clicks on add to cart. you can save that in db.
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+1. The app. should be a MVC-like with simple dummy MVC classes. Eg. a View class will look like:
+
+class View
+{
+	protected templateFilename;
+	public function __construct($templateFilename)
+	{
+		$this->templateFilename=$templateFilename;
+	}
+	public function show()
+	{
+		include($this->templateFilename);
+	}
+}
+2. No controllers. The script/page itself will act as a controller method.
+3. Need 2 client side classes: Form and GiftCertificate.
+4. Server side: MVC dummy classes, and a GiftCerticateRecord for storing the data.
