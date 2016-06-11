@@ -5,7 +5,7 @@
 class View
 {
 	protected $_propsData;
-	
+	public $errorMessage, $message;
 	//just store props, no validations
 	public function __set($propName, $propValue)
 	{

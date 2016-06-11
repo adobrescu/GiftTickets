@@ -37,7 +37,7 @@ if(isset($_POST['cmd_x']))
 		}
 		catch(Exception $err)
 		{
-			$view->errorMessage='An error has occured';
+			$view->errorMessage[]=$err->getMessage();
 		}
 		/*
 		//@todo: better catch different errors to built specific error messages
@@ -52,17 +52,20 @@ if(isset($_POST['cmd_x']))
 		 * 
 		 */
 	}
-	//there are no errors, save the record
-	try
+	if(!$view->errorMessage)
 	{
-		$record->save();
-		
-		//@todo: redirect a a "thank you"/ticket details page instead of showing message
-		$view->message='GiftTicket successfully saved';
-	}
-	catch(Exception $err)
-	{
-		$view->errorMessage='A database error has occured ';
+		//there are no errors, save the record
+		try
+		{
+			$record->save();
+
+			//@todo: redirect a a "thank you"/ticket details page instead of showing message
+			$view->message='GiftTicket successfully saved';
+		}
+		catch(Exception $err)
+		{
+			$view->errorMessage='A database error has occured ';
+		}
 	}
 }
 

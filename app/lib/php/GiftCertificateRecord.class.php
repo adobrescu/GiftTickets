@@ -14,7 +14,34 @@ class GiftCertificateRecord extends Record
 		//if an property values is invalid then throw a specific error; it is caught in "controller" script
 		//and an error message is set (append) to the view
 		
-		//throw new GiftCertificateException();
+		//dummy validations, all fields should be not-empty
+		if($propValue)
+		{
+			return;
+		}
+		//property is empty, throw an exception
+		$errMsg='';
+		switch($propName)
+		{
+			case 'giftTicketAmount':
+				$errMsg='Ticket amount and cost are required';
+				break;
+			case 'giftTicketTheme':
+				$errMsg='Ticket theme is required';
+				break;
+			case 'giftTicketMessage':
+				$errMsg='Ticket message is required';
+				break;
+			case 'recipientEmail':
+				$errMsg='Ticket recipient email is required';
+				
+				break;
+		}
+		
+		if($errMsg)
+		{
+			throw new GiftCertificateException($errMsg);
+		}
 	}
 	/**
 	 * save - dummy method for inserting data to database

@@ -24,7 +24,23 @@
 	{
 ?>
 			<div class="form-error">
+<?php
+		if(is_array($this->errorMessage))
+		{
+			foreach($this->errorMessage as $errorMessage)
+			{
+?>
+			<div class="form-error-line"><?=$errorMessage?></div>
+<?php
+			}
+		}
+		else
+		{
+?>
 				<?=$this->errorMessage?>
+<?php
+		}
+?>
 			</div>
 <?php
 	}
