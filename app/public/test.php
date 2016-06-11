@@ -78,6 +78,7 @@ foreach($recordset as $record)
 				<div class="clearfix"><span class="label">Amount: </span>$<?=$record['amount']?></div>
 				<div class="clearfix"><span class="label">Cost: </span>$<?=$record['cost']?></div>
 				<div class="clearfix"><span class="label">Message: </span><?=$record['message']?></div>
+				<div class="clearfix"><span class="label">Recipient Email Address: </span><?=$record['recipeint_email']?></div>
 			</div>
 		</div>
 <?php
