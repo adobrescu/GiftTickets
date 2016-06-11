@@ -22,25 +22,26 @@
 				<div class="form-section clearfix">
 					<label for="GiftTicketAmount">Choose a GiftTicket Amount</label>
 					<div class="form-field clearfix">
-						<select name="giftTicketAmount" id="giftTicketAmount">
-							<option value="20.00|22.75">$20.00 - Cost $22.75</option>
-							<option value="25.00|24.00">$25.00 - Cost $24.00</option>
-						</select>
-						<div class="form-message">
+						<?=$this->showArraySelect($GLOBALS['_amounts'], 'giftTicketAmount', null, 'None', false, '$', ' - Cost $', '|') ?>
+						<div class="form-message" id="ticketAmountAndCostMsg">
 							You have selected a <span id="ticketAmoutMsg"></span> GiftTicket.
 							<br>
 							This GiftTicket costs <span id="ticketCostMsg"></span>
+						</div>
+						<div class="form-message" id="ticketAmountAndCostNoSelectionMsg">
+							You haven't selected any amount for your GiftTicket
 						</div>
 					</div>
 				</div>
 				<div class="form-section clearfix">
 					<label for="giftTicketTheme">Choose a GiftTicket Theme for an Occasion</label>
 					<div class="form-field clearfix">
-						<select name="giftTicketTheme" id="giftTicketTheme" multiple>
-							<option value="">None</option>
-							<option value="Birthday">Birthday</option>
-						</select>
+						<?=$this->showArraySelect($GLOBALS['_themes'], 'giftTicketTheme', null, 'None', true, '', '', '') ?>
 						<div class="form-message" id="giftTicketThemeMsg">
+							You have selected &quot;<span id="giftTicketThemeNameMsg"></span>&quot; for your GiftTicket
+						</div>
+						<div class="form-message" id="giftTicketThemeNoSelectionMsg">
+								You have selected no theme for your GiftTicket
 						</div>
 					</div>
 				</div>
@@ -63,8 +64,9 @@
 					</div>
 				</div>
 				<div class="form-submits clearfix">
-					<input type="image" src="lib/img/add-to-cart.gif" name="cmd_x" class="form-submit-image">
+					<input type="image" src="lib/img/add-to-cart.gif" name="cmd" class="form-submit-image">
 				</div>
+				<input type="hidden" name="imgBlob">
 			</form>
 			<!-- // End specific -->
 		</main>
