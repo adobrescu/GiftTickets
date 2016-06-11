@@ -22,7 +22,14 @@ function GiftCertificateForm(formId, themeImagesUrl)
 	this.textareaMessage=this.form.elements["giftTicketMessage"];
 	for(var i=0; i<GiftCertificateForm.prototype.___textEvents.length; i++)
 	{
-		this.textareaMessage.addEventListener(GiftCertificateForm.prototype.___textEvents[i], new Function("evt", "GiftCertificateForm.prototype.___instance.onMessageChange(evt)"));	
+		if(GiftCertificateForm.prototype.___textEvents[i]=="paste" || GiftCertificateForm.prototype.___textEvents[i]=="drop")
+		{
+			this.textareaMessage.addEventListener(GiftCertificateForm.prototype.___textEvents[i], new Function("evt", "setTimeout('GiftCertificateForm.prototype.___instance.onMessageChange()', 100)"));	
+		}
+		else
+		{
+			this.textareaMessage.addEventListener(GiftCertificateForm.prototype.___textEvents[i], new Function("evt", "GiftCertificateForm.prototype.___instance.onMessageChange(evt)"));	
+		}
 	}
 	
 	//load/pre-cache theme backgrounds
@@ -148,6 +155,7 @@ function GiftCertificateForm_drawGiftCertificate()
 	
 	context.font="13px Arial, serif";
 	context.textAlign="left";
+	//@todo: use context.measureText to wrap long text
 	context.fillText(this.textareaMessage.value, this.canvas.width*0.2, this.canvas.height*0.33);
 	
 	
