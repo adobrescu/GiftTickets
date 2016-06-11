@@ -27,6 +27,14 @@
 			</div>
 <?php
 	}
+	if($this->message)
+	{
+?>
+			<div class="form-message2">
+				<?=$this->message?>
+			</div>
+<?php
+	}
 ?>
 			<form id="giftCertificateForm" method="post" enctype="multipart/form-data">
 				<div class="form-section clearfix">
@@ -46,9 +54,9 @@
 				<div class="form-section clearfix">
 					<label for="giftTicketTheme">Choose a GiftTicket Theme for an Occasion</label>
 					<div class="form-field clearfix">
-						<?=$this->showArraySelect($GLOBALS['_themes'], 'giftTicketTheme', $this->giftTicketTheme, 'None', true, '', '', '') ?>
+						<?=$this->showArraySelect($GLOBALS['_themes'], 'giftTicketTheme', $this->giftTicketTheme, 'None', false, '', '', '') ?>
 						<div class="form-message" id="giftTicketThemeMsg">
-							You have selected &quot;<span id="giftTicketThemeNameMsg"></span>&quot; for your GiftTicket
+							You have selected &quot;<span id="giftTicketThemeNameMsg"></span>&quot; theme for your GiftTicket
 						</div>
 						<div class="form-message" id="giftTicketThemeNoSelectionMsg">
 								You have selected no theme for your GiftTicket
@@ -58,7 +66,7 @@
 				<div class="form-section clearfix">
 					<label for="giftTicketMessage">Write a personalized message to your recipient</label>
 					<div class="form-field clearfix">
-						<textarea name="giftTicketMessage" id="giftTicketMessage"><?=$this->giftTicketMessage?></textarea>
+						<textarea name="giftTicketMessage" id="giftTicketMessage" placeholder="Limit 250 Characters"><?=$this->giftTicketMessage?></textarea>
 					</div>
 				</div>
 				<div class="form-section clearfix">
@@ -67,14 +75,14 @@
 						<input type="text" name="recipientEmail" id="recipientEmail" value="<?=$this->recipientEmail?>">
 					</div>
 				</div>
-				<div class="form-section clearfix">
+				<div class="form-section clearfix" id="canvasWrapper">
 					<label>Preview Image</label>
 					<div class="form-field clearfix">
 						<canvas id="giftTicketCanvas"></canvas>
 					</div>
 				</div>
 				<div class="form-submits clearfix">
-					<input type="image" src="lib/img/add-to-cart.gif" name="cmd" class="form-submit-image">
+					<div class="submit-wrapper"><input type="image" src="lib/img/add-to-cart.gif" name="cmd" class="form-submit-image" id="submit"></div>
 				</div>
 				<input type="hidden" name="imgBlob">
 			</form>

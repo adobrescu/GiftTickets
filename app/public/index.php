@@ -56,7 +56,8 @@ if(isset($_POST['cmd_x']))
 	{
 		$record->save();
 		
-		//@todo: redirect a a "thank you"/ticket details page
+		//@todo: redirect a a "thank you"/ticket details page instead of showing message
+		$view->message='GiftTicket successfully saved';
 	}
 	catch(Exception $err)
 	{
