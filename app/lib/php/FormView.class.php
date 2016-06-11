@@ -12,7 +12,7 @@ class FormView extends View
 		
 		if($optionNone)
 		{
-			$html.='<option value=""'.($selectedOption==''?' selected':'').'>'.$optionNone.'</option>';
+			$html.='<option value=""'.($selectedOption===''?' selected':'').'>'.$optionNone.'</option>';
 		}
 		foreach($arr as $value=>$text)
 		{
